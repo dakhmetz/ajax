@@ -33,8 +33,12 @@ try {
     $mail->Subject = 'Новая заявка с сайта';
     $mail->Body    = "Username: ${userName}, Phone number: ${userPhone}, Email: ${userEmail}. Question - ${userQuestion}";
 
-    $mail->send();
-    header('Location: thanks.html');
+    if ($mail->send()) {
+        echo "ok";
+    } else {
+        echo "Письмо не отправлено. Код ошибки: {$mail->ErrorInfo}";
+    }
+
 } catch (Exception $e) {
     echo "Письмо не отправлено. Код ошибки: {$mail->ErrorInfo}";
 }

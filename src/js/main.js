@@ -121,6 +121,16 @@ $(document).ready(function () {
         required: "Email обязателен",
         email: "Формат email должен содержать name@domain.com"
       }
+    },
+    submitHandler: function(form) {
+      $.ajax({
+        type: "POST",
+        url: "send.php",
+        data: $(form).serialize(),
+        success: function (response) {
+          console.log('Ajax сработал. Ответ сервера: ' + response);
+        }
+      });
     }
   });
 
